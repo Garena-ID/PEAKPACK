@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <defs>
+    <linearGradient id="peakGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mountain Peak Icon Base -->
+  <rect x="6" y="10" width="60" height="60" rx="16" fill="url(#peakGrad)"/>
+
+  <!-- Sun behind peak -->
+  <circle cx="48" cy="26" r="8" fill="url(#sunGrad)"/>
+
+  <!-- Mountain Peaks -->
+  <path d="M16 56L32 26L48 56H16Z" fill="#10b981" opacity="0.9"/>
+  <path d="M26 56L42 32L58 56H26Z" fill="url(#accentGrad)"/>
+  <!-- Snow cap -->
+  <path d="M42 32L46 38L42 41L38 38L42 32Z" fill="#ffffff" opacity="0.95"/>
+
+  <!-- Brand Name Typography -->
+  <text x="80" y="47" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="900" font-size="30" fill="#022c22" letter-spacing="-0.5">
+    Peak<tspan fill="#10b981">Pack</tspan>
+  </text>
+  <text x="82" y="62" font-family="'Inter', system-ui, sans-serif" font-weight="600" font-size="10" fill="#047857" letter-spacing="2">
+    OUTDOOR & RENTAL
+  </text>
+</svg>

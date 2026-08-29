@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="favPeakGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="favAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="favSun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="16" fill="url(#favPeakGrad)"/>
+  <circle cx="46" cy="20" r="7" fill="url(#favSun)"/>
+  <path d="M12 50L28 22L44 50H12Z" fill="#10b981" opacity="0.85"/>
+  <path d="M22 50L38 27L54 50H22Z" fill="url(#favAccent)"/>
+  <path d="M38 27L42 33L38 36L34 33L38 27Z" fill="#ffffff" opacity="0.95"/>
+</svg>

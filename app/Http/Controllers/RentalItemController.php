@@ -1,0 +1,14 @@
+<?php
+namespace App\Http\Controllers;
+use App\Http\Requests\RentalItemRequest; use App\Models\{Gear, Rental, RentalItem}; use Illuminate\Http\Request; use Illuminate\Support\Facades\DB;
+class RentalItemController extends Controller {
+ public function index(Request $request){$items=RentalItem::with(['rental.user','gear'])->when($request->search,fn($q,$s)=>$q->whereHas('rental',fn($q)=>$q->where('rental_code','like',"%$s%"))->orWhereHas('gear',fn($q)=>$q->where('name','like',"%$s%")))->latest()->paginate(10)->withQueryString();return view('admin.rental-items.index',compact('items'));}
+ public function create(){return $this->form(new RentalItem,'Add rental item');}
+ public function store(RentalItemRequest $request){$this->save(new RentalItem,$request->validated());return to_route('admin.rental-items.index')->with('success','Rental item added.');}
+ public function edit(RentalItem $rentalItem){return $this->form($rentalItem,'Edit rental item');}
+ public function update(RentalItemRequest $request,RentalItem $rentalItem){$this->save($rentalItem,$request->validated());return to_route('admin.rental-items.index')->with('success','Rental item updated.');}
+ public function destroy(RentalItem $rentalItem){DB::transaction(function()use($rentalItem){$rentalItem->gear()->increment('stock',$rentalItem->qty);$rental=$rentalItem->rental;$rentalItem->delete();$this->refreshTotal($rental);});return to_route('admin.rental-items.index')->with('success','Rental item deleted and stock restored.');}
+ private function form($item,$title){return view('admin.rental-items.form',compact('item','title')+['rentals'=>Rental::whereIn('status',['Pending','On Rent'])->latest()->get(),'gear'=>Gear::orderBy('name')->get()]);}
+ private function save(RentalItem $item,array $data):void{DB::transaction(function()use($item,$data){$previousRentalId=$item->rental_id;$rental=Rental::findOrFail($data['rental_id']);abort_if($rental->status==='Completed',422,'Completed rentals cannot be changed.');$oldGear=$item->exists?$item->gear:null;$oldQty=$item->exists?$item->qty:0;$newGear=Gear::lockForUpdate()->findOrFail($data['gear_id']);if($oldGear&&$oldGear->id!==$newGear->id)$oldGear->increment('stock',$oldQty);$needed=$data['qty']-(($oldGear&&$oldGear->id===$newGear->id)?$oldQty:0);abort_if($newGear->stock<$needed,422,'Insufficient stock.');if($needed>0)$newGear->decrement('stock',$needed);elseif($needed<0)$newGear->increment('stock',-$needed);$data['price']=$newGear->rental_price;$data['subtotal']=$data['price']*$data['qty'];$item->fill($data)->save();$this->refreshTotal($rental);if($previousRentalId&&$previousRentalId!==$rental->id)$this->refreshTotal(Rental::findOrFail($previousRentalId));});}
+ private function refreshTotal(Rental $rental):void{$rental->update(['total_price'=>$rental->rentalItems()->sum('subtotal')]);}
+}
