@@ -10,10 +10,10 @@
 
     <div class="flex flex-wrap gap-2">
         <a href="{{ route('admin.reports.export-pdf', request()->query()) }}" target="_blank" class="btn-primary flex items-center gap-2">
-            📄 Export PDF (Print)
+             Export PDF (Print)
         </a>
         <a href="{{ route('admin.reports.export-excel', request()->query()) }}" class="btn-secondary flex items-center gap-2">
-            📊 Export Excel (CSV)
+             Export Excel (CSV)
         </a>
     </div>
 </div>

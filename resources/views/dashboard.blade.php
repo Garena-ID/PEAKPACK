@@ -11,10 +11,10 @@
 
     <div class="flex flex-wrap gap-3">
         <a class="btn-primary" href="{{ route('gear.catalog') }}">
-            ⚙️ Rent Gear
+            ⚙️ Sewa Peralatan
         </a>
         <a class="btn-secondary" href="{{ route('mountains.catalog') }}">
-            ⛰️ Explore Mountains
+            ⛰️ Daftar Gunung
         </a>
     </div>
 </div>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="card p-5">
-        <p class="eyebrow">TOTAL SEWA</p>
+        <p class="eyebrow">TOTAL SEWA YANG DILAKUKAN</p>
         <p class="mt-2 text-3xl font-black text-forest">{{ $user->rentals()->count() }}</p>
         <small class="text-xs text-primary/60">Penyewaan keseluruhan</small>
     </div>

@@ -51,7 +51,7 @@
                 </span>
 
                 <span>
-                    ⏱️ {{ $m->estimated_duration }}
+                     {{ $m->estimated_duration }}
                 </span>
             </div>
         </article>

@@ -2,7 +2,7 @@
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-500">
         <div class="flex items-center gap-2">
             <img src="{{ asset('images/peakpack/favicon.svg') }}" alt="PeakPack" class="h-5 w-5" />
-            <span>&copy; {{ date('Y') }} PeakPack. Outdoor Gear Rental & Mountain Preparation.</span>
+            <span>&copy; {{ date('Y') }} PeakPack. Outdoor Gear Rental & Mountain Preparation By Frega Teguh Dwiguna.</span>
         </div>
         <div>
             <span>System Version 1.0</span>

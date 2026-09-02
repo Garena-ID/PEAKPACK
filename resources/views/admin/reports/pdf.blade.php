@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeakPack - Laporan Rekapitulasi Penyewaan</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/peakpack/favicon.svg') }}">
     <style>
         body {
             font-family: 'Helvetica', 'Arial', sans-serif;
@@ -121,20 +122,26 @@
             color: #94a3b8;
         }
         @media print {
-            body {
-                padding: 0;
-            }
-            .no-print {
-                display: none;
-            }
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
         }
+
+        body {
+            padding: 0;
+        }
+
+        .no-print {
+            display: none !important;
+        }
+    }
     </style>
 </head>
 <body onload="window.print()">
 
     <div class="no-print" style="margin-bottom: 20px; text-align: right;">
         <button onclick="window.print()" style="background-color: #064e3b; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
-            🖨️ Cetak / Simpan PDF
+             Cetak / Simpan PDF
         </button>
     </div>
 
@@ -226,8 +233,7 @@
     </div>
 
     <div class="footer">
-        Laporan ini dicetak secara otomatis dari Sistem PeakPack Platform pada {{ date('d M Y H:i') }}.
-    </div>
+        Laporan ini dicetak secara otomatis dari Sistem PeakPack Platform pada {{ date('d M Y') }}
 
 </body>
 </html>

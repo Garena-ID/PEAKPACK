@@ -10,6 +10,7 @@ use App\Http\Controllers\RentalItemController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CustomersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,15 +29,43 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::prefix('admin')->as('admin.')->middleware(['auth', 'admin'])->group(function () {
+
     Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
+
+    // Customers
+    Route::resource('customers', CustomersController::class)->only([
+        'index',
+        'show',
+        'edit',
+        'update',
+        'destroy',
+    ]);
+
+    // Mountains
     Route::resource('mountains', MountainController::class)->except('show');
+
+    // Gear Categories
     Route::resource('gear-categories', GearCategoryController::class)->except('show');
+
+    // Gear
     Route::resource('gear', GearController::class)->except('show');
-    Route::resource('rentals', RentalController::class)->only(['index', 'show', 'edit', 'update', 'destroy']);
+
+    // Rentals
+    Route::resource('rentals', RentalController::class)->only([
+        'index',
+        'show',
+        'edit',
+        'update',
+        'destroy',
+    ]);
+
+    // Rental Items
     Route::resource('rental-items', RentalItemController::class)->except('show');
+
+    // Recommendations
     Route::resource('recommendations', MountainRecommendationController::class)->except('show');
-    
-    // Reports routes
+
+    // Reports
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/export-pdf', [ReportController::class, 'exportPdf'])->name('reports.export-pdf');
     Route::get('/reports/export-excel', [ReportController::class, 'exportExcel'])->name('reports.export-excel');

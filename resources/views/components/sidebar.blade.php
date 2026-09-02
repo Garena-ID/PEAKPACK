@@ -9,13 +9,13 @@
                 Dashboard
             </a>
             <a class="side-link {{ request()->routeIs('mountains.*') ? 'bg-white/20 text-white font-bold' : '' }}" href="{{ route('mountains.catalog') }}">
-                Explore Mountains
+                Daftar Gunung
             </a>
             <a class="side-link {{ request()->routeIs('gear.*') ? 'bg-white/20 text-white font-bold' : '' }}" href="{{ route('gear.catalog') }}">
-                Rent Gear
+                Sewa Peralatan
             </a>
             <a class="side-link {{ request()->routeIs('rentals.*') ? 'bg-white/20 text-white font-bold' : '' }}" href="{{ route('rentals.index') }}">
-                My Rentals
+                Daftar Penyewaan    
             </a>
         </nav>
     </div>

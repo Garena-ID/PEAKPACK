@@ -18,7 +18,7 @@
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama gunung, lokasi, atau provinsi..." class="input" />
     </div>
 
-    <div>
+    <div>   
         <select name="difficulty" class="input">
             <option value="">Semua Tingkat Kesulitan</option>
             @foreach(['Easy', 'Medium', 'Hard'] as $level)
@@ -49,8 +49,8 @@
                     <th class="py-3">Lokasi & Provinsi</th>
                     <th class="py-3">Ketinggian</th>
                     <th class="py-3">Kesulitan</th>
-                    <th class="py-3">Durasi Est.</th>
-                    <th class="py-3 text-right">Aksi</th>
+                    <th class="py-3">Durasi</th>
+                    <th class="py-3 text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-primary/5">
@@ -72,7 +72,7 @@
                             </span>
                         </td>
                         <td class="py-3 text-xs font-semibold text-primary/70">
-                            ⏱️ {{ $mountain->estimated_duration }}
+                             {{ $mountain->estimated_duration }}
                         </td>
                         <td class="py-3 text-right">
                             <div class="flex items-center justify-end gap-2">

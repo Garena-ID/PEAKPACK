@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Agu 2026 pada 10.20
+-- Waktu pembuatan: 02 Sep 2026 pada 14.30
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -83,11 +83,11 @@ CREATE TABLE `gears` (
 --
 
 INSERT INTO `gears` (`id`, `category_id`, `name`, `stock`, `rental_price`, `description`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Tenda 2 Orang', 5, 50000.00, 'Tenda untuk kapasitas 2 orang.', '2026-08-03 23:14:56', '2026-08-29 00:19:15'),
-(2, 2, 'Carrier 40L', 5, 35000.00, 'Carrier dengan kapasitas 40 liter.', '2026-08-03 23:14:56', '2026-08-29 00:29:05'),
+(1, 1, 'Tenda 2 Orang', 5, 50000.00, 'Tenda untuk kapasitas 2 orang.', '2026-08-03 23:14:56', '2026-09-02 05:25:45'),
+(2, 2, 'Carrier 40L', 5, 35000.00, 'Carrier dengan kapasitas 40 liter.', '2026-08-03 23:14:56', '2026-09-02 05:21:29'),
 (3, 3, 'Sleeping Bag', 10, 20000.00, 'Sleeping bag untuk kebutuhan bermalam.', '2026-08-03 23:14:56', '2026-08-29 00:20:41'),
 (4, 4, 'Headlamp', 10, 15000.00, 'Lampu kepala untuk membantu penerangan.', '2026-08-03 23:14:56', '2026-08-03 23:14:56'),
-(5, 5, 'Kompor Portable', 10, 30000.00, 'Alat Masak Kompor Portable Sudah Include Dengan Gas Portable', '2026-08-29 00:18:44', '2026-08-29 00:18:44');
+(5, 5, 'Kompor Portable', 10, 30000.00, 'Alat Masak Kompor Portable Sudah Include Dengan Gas Portable', '2026-08-29 00:18:44', '2026-09-02 05:25:45');
 
 -- --------------------------------------------------------
 
@@ -111,8 +111,7 @@ INSERT INTO `gear_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (2, 'Carrier', '2026-08-03 23:14:56', '2026-08-03 23:14:56'),
 (3, 'Sleeping Bag', '2026-08-03 23:14:56', '2026-08-03 23:14:56'),
 (4, 'Penerangan', '2026-08-03 23:14:56', '2026-08-03 23:14:56'),
-(5, 'Alat Masak', '2026-08-29 00:17:40', '2026-08-29 00:17:40'),
-(6, 'Test Category', '2026-08-29 00:33:35', '2026-08-29 00:33:35');
+(5, 'Alat Masak', '2026-08-29 00:17:40', '2026-08-29 00:17:40');
 
 -- --------------------------------------------------------
 
@@ -204,7 +203,7 @@ CREATE TABLE `mountains` (
 
 INSERT INTO `mountains` (`id`, `name`, `location`, `province`, `elevation`, `difficulty`, `estimated_duration`, `description`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES
 (1, 'Gunung Gede', 'Cibodas', 'Jawa Barat', 2958, 'Medium', '1-2 hari', 'Gunung Gede merupakan salah satu gunung populer di Jawa Barat.', -6.7875000, 106.9790000, '2026-08-03 23:05:36', '2026-08-03 23:14:55'),
-(2, 'Gunung Papandayan', 'Garut', 'Jawa Barat', 2665, 'Easy', '1 hari', 'Gunung Papandayan memiliki jalur pendakian yang relatif mudah.', -7.3190000, 107.7310000, '2026-08-03 23:05:36', '2026-08-03 23:14:55'),
+(2, 'Gunung Papandayan', 'Garut', 'Jawa Barat', 2665, 'Easy', '1 hari', 'Gunung Papandayan memiliki jalur pendakian yang relatif mudah.', -7.3190000, 107.7310000, '2026-08-03 23:05:36', '2026-09-02 03:16:01'),
 (3, 'Gunung Ciremai', 'Kuningan', 'Jawa Barat', 3078, 'Hard', '1-2 hari', 'Gunung Ciremai merupakan gunung tertinggi di wilayah Jawa Barat.', -6.8920000, 108.4050000, '2026-08-03 23:14:55', '2026-08-28 23:50:37');
 
 -- --------------------------------------------------------
@@ -275,7 +274,7 @@ INSERT INTO `rentals` (`id`, `user_id`, `rental_code`, `rental_date`, `due_date`
 (1, 5, 'PP-260829-LZMZD', '2026-08-29', '2026-08-31', '2026-08-31', 50000.00, 'Completed', '2026-08-29 00:13:00', '2026-08-29 00:19:15'),
 (3, 5, 'PP-260829-1JCYY', '2026-08-29', '2026-08-31', '2026-08-31', 175000.00, 'Completed', '2026-08-29 00:22:14', '2026-08-29 00:23:39'),
 (4, 5, 'PP-260829-JUFLM', '2026-08-29', '2026-08-31', NULL, 175000.00, 'Completed', '2026-08-29 00:28:02', '2026-08-29 00:29:05'),
-(5, 1, 'PP-260829-U4TXD', '2026-08-29', '2026-08-31', NULL, 250000.00, 'Pending', '2026-08-29 00:33:35', '2026-08-29 00:33:35');
+(14, 7, 'PP-260902-CKZKE', '2026-09-02', '2026-09-04', '2026-09-02', 160000.00, 'Completed', '2026-09-02 05:23:18', '2026-09-02 05:25:45');
 
 -- --------------------------------------------------------
 
@@ -301,7 +300,9 @@ CREATE TABLE `rental_items` (
 INSERT INTO `rental_items` (`id`, `rental_id`, `gear_id`, `qty`, `price`, `subtotal`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 1, 50000.00, 50000.00, '2026-08-29 00:13:00', '2026-08-29 00:13:00'),
 (2, 3, 2, 5, 35000.00, 175000.00, '2026-08-29 00:22:14', '2026-08-29 00:22:14'),
-(3, 4, 2, 5, 35000.00, 175000.00, '2026-08-29 00:28:02', '2026-08-29 00:28:02');
+(3, 4, 2, 5, 35000.00, 175000.00, '2026-08-29 00:28:02', '2026-08-29 00:28:02'),
+(13, 14, 1, 2, 50000.00, 100000.00, '2026-09-02 05:23:18', '2026-09-02 05:23:18'),
+(14, 14, 5, 2, 30000.00, 60000.00, '2026-09-02 05:23:18', '2026-09-02 05:23:18');
 
 -- --------------------------------------------------------
 
@@ -323,8 +324,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('dLhMlYbAA0Gv3JJ4l7XzDq7mZXLnM6Zg8EgnAMQe', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicGloQkVyM2Znc1FMZHN1MXNXeE5uc3BOY3RHMHBNUUVyOWxFRU5jZyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1787984764),
-('vRUh3sZC5nOuPLGWj4A7qr9LFLt2ysW7BxhwYWDn', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZFVUWW8wajlyeEZWT1F4Zm5JaEhQc1A2SmZQbnpFTENTdzZ1WlQ1byI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9nZWFyLWNhdGVnb3JpZXMiO3M6NToicm91dGUiO3M6Mjc6ImFkbWluLmdlYXItY2F0ZWdvcmllcy5pbmRleCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1787991518);
+('Z5CfN5XYbMZ1y9PrcUUoQf2FvZFkpTyJ8NiX8p3q', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVTZlYWhXaEVNaEFLa1J4VmJQMldRSUNaYUlpNTE1cVUyMzA4MmlEbiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kYXNoYm9hcmQiO3M6NToicm91dGUiO3M6MTU6ImFkbWluLmRhc2hib2FyZCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1788352186);
 
 -- --------------------------------------------------------
 
@@ -351,9 +351,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'tester', 'imilistiwi@gmail.com', NULL, '$2y$12$9BDmWFieQDl6g/LI1io2iukFGj3KoGIXmCqhVmCvCIgZxtBjZSoyK', 'customer', NULL, '2026-08-03 07:48:51', '2026-08-03 07:48:51'),
 (2, 'Admin', 'admin@peakpack', NULL, '$2y$12$i4UfP7wxPxGUzRM8v6zNo.7bbSCaVs4tWAXwIiIaKPvFS.H0lIwVC', 'admin', NULL, '2026-08-03 23:05:36', '2026-08-03 23:05:36'),
-(3, 'Admin PeakPack', 'admin@peakpack.test', NULL, '$2y$12$C0NFNqCz6KDE69bnVA/8aOHmeJM2Fek82wP1UZO7reOgqANnms5Zi', 'admin', NULL, '2026-08-03 23:14:55', '2026-08-03 23:14:55'),
-(4, 'Customer1', 'ekaw@gmail.com', NULL, '$2y$12$q/uZFxkilY0MGvYkgrx15eXhH1Di9LYmkSal/3n.4gavv74yLfz/G', 'customer', NULL, '2026-08-06 08:31:03', '2026-08-06 08:31:03'),
-(5, 'Frega Dwiguna', 'dwigunafrega88@gmail.com', NULL, '$2y$12$YasTaPVADYpn8cvcMfYtcOWubylWV5a3ElL2CohXlDE54QoYPbndi', 'customer', NULL, '2026-08-28 23:27:15', '2026-08-28 23:27:15');
+(3, 'Admin Frega', 'admin@peakpack.test', NULL, '$2y$12$C0NFNqCz6KDE69bnVA/8aOHmeJM2Fek82wP1UZO7reOgqANnms5Zi', 'admin', NULL, '2026-08-03 23:14:55', '2026-08-03 23:14:55'),
+(5, 'Frega Teguh Dwiguna', 'dwigunafrega88@gmail.com', NULL, '$2y$12$YasTaPVADYpn8cvcMfYtcOWubylWV5a3ElL2CohXlDE54QoYPbndi', 'customer', NULL, '2026-08-28 23:27:15', '2026-08-28 23:27:15'),
+(6, 'Bagas Tubagas', 'cursorrandom91@gmail.com', NULL, '$2y$12$EPedtuaYUovaTHISzlwDW.rjSfzROcaL9rJ68WO2QIv8IJbNVtJte', 'customer', NULL, '2026-08-31 21:55:57', '2026-08-31 21:55:57'),
+(7, 'Agus Muhammad', 'gus@gmail.com', NULL, '$2y$12$HxHQByVaYIB29D8Rqw.6G.3MtuWrD3X1Y6Tc9zLpFUPrvNxFks.2a', 'customer', NULL, '2026-09-02 05:22:48', '2026-09-02 05:22:48');
 
 --
 -- Indexes for dumped tables
@@ -477,13 +478,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `gears`
 --
 ALTER TABLE `gears`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `gear_categories`
 --
 ALTER TABLE `gear_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `jobs`
@@ -501,7 +502,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `mountains`
 --
 ALTER TABLE `mountains`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `mountain_recommendations`
@@ -513,19 +514,19 @@ ALTER TABLE `mountain_recommendations`
 -- AUTO_INCREMENT untuk tabel `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `rental_items`
 --
 ALTER TABLE `rental_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

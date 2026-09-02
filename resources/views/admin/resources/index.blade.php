@@ -19,8 +19,8 @@
 </a>
 
 </div>
+<form class="card mb-6 grid gap-3 p-4 sm:grid-cols-{{ $resource === 'mountains' ? '3' : '2' }}">
 
-<form class="card mb-6 grid gap-3 p-4 sm:grid-cols-3">
     <input
         class="input"
         name="search"
@@ -28,23 +28,26 @@
         placeholder="Search {{ strtolower($title) }}"
     >
 
-<select class="input" name="difficulty">
-    <option value="">
-        All difficulties
-    </option>
+    @if($resource === 'mountains')
+        <select class="input" name="difficulty">
+            <option value="">
+                All difficulties
+            </option>
 
-    @foreach(['Easy', 'Medium', 'Hard'] as $level)
-        <option
-            @selected(request('difficulty') === $level)
-        >
-            {{ $level }}
-        </option>
-    @endforeach
-</select>
+            @foreach(['Easy', 'Medium', 'Hard'] as $level)
+                <option
+                    value="{{ $level }}"
+                    @selected(request('difficulty') === $level)
+                >
+                    {{ $level }}
+                </option>
+            @endforeach
+        </select>
+    @endif
 
-<button class="btn-secondary">
-    Filter
-</button>
+    <button class="btn-secondary">
+        Filter
+    </button>
 
 </form>
 
