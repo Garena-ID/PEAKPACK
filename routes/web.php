@@ -11,10 +11,15 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomersController;
+use App\Models\Gear;
+use App\Models\Mountain;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $mountains = Mountain::latest()->take(3)->get();
+    $gears = Gear::with('category')->orderBy('name')->get();
+
+    return view('welcome', compact('mountains', 'gears'));
 })->name('welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {

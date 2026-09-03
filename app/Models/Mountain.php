@@ -17,6 +17,7 @@ class Mountain extends Model
         'difficulty',
         'estimated_duration',
         'description',
+        'image',
         'latitude',
         'longitude',
     ];

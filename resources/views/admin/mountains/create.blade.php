@@ -147,8 +147,12 @@ LEAFLET CSS
      FORM
 ====================================================== --}}
 <div class="card max-w-4xl p-6 lg:p-8">
-    <form method="POST" action="{{ route('admin.mountains.store') }}" class="space-y-6">
-        @csrf
+<form
+    method="POST"
+    action="{{ route('admin.mountains.store') }}"
+    enctype="multipart/form-data"
+    class="space-y-6"
+>        @csrf
 
         {{-- =================================================
              DATA GUNUNG
@@ -291,6 +295,33 @@ LEAFLET CSS
                     z-index: 1;
                 "
             ></div>
+        </div>
+
+        {{-- =================================================
+             UPLOAD GAMBAR
+        ================================================== --}}
+        <div> 
+            <label for="image" class="field"> 
+                <span>Gambar Gunung (Opsional)</span> 
+
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpg,.jpeg,.png,.webp"
+                    class="input"
+                /> 
+
+                <p class="mt-1 text-xs text-primary/60"> 
+                    Format yang diizinkan: jpg, jpeg, png, webp. Ukuran maksimal: 2MB. 
+                </p> 
+            </label> 
+
+            @error('image') 
+                <p class="mt-1 text-xs font-bold text-red-600">
+                    {{ $message }}
+                </p> 
+            @enderror 
         </div>
 
         {{-- =================================================

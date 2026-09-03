@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MountainRequest;
 use App\Models\Mountain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MountainController extends Controller
 {
@@ -62,10 +63,19 @@ class MountainController extends Controller
         return view('admin.mountains.create', compact('mountain')); 
     }
 
-    public function store(MountainRequest $request) 
-    { 
-        Mountain::create($request->validated()); 
-        return redirect()->route('admin.mountains.index')->with('success', 'Data gunung berhasil ditambahkan.'); 
+    public function store(MountainRequest $request)
+    {
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('mountains', 'public');
+        }
+
+        Mountain::create($data);
+
+        return redirect()
+            ->route('admin.mountains.index')
+            ->with('success', 'Data gunung berhasil ditambahkan.');
     }
 
     public function edit(Mountain $mountain) 
@@ -73,16 +83,35 @@ class MountainController extends Controller
         return view('admin.mountains.edit', compact('mountain')); 
     }
 
-    public function update(MountainRequest $request, Mountain $mountain) 
-    { 
-        $mountain->update($request->validated()); 
-        return redirect()->route('admin.mountains.index')->with('success', 'Data gunung berhasil diperbarui.'); 
+    public function update(MountainRequest $request, Mountain $mountain)
+    {
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            if ($mountain->image) {
+                Storage::disk('public')->delete($mountain->image);
+            }
+
+            $data['image'] = $request->file('image')->store('mountains', 'public');
+        }
+
+        $mountain->update($data);
+
+        return redirect()
+            ->route('admin.mountains.index')
+            ->with('success', 'Data gunung berhasil diperbarui.');
     }
 
-    public function destroy(Mountain $mountain) 
-    { 
-        // Check relations if needed
-        $mountain->delete(); 
-        return redirect()->route('admin.mountains.index')->with('success', 'Data gunung berhasil dihapus.'); 
+    public function destroy(Mountain $mountain)
+    {
+        if ($mountain->image) {
+            Storage::disk('public')->delete($mountain->image);
+        }
+
+        $mountain->delete();
+
+        return redirect()
+            ->route('admin.mountains.index')
+            ->with('success', 'Data gunung berhasil dihapus.');
     }
 }

@@ -1,133 +1,13 @@
-{{-- @extends('layouts.admin')
-
-@section('content')
-<div class="mb-8">
-    <a href="{{ route('admin.mountains.index') }}" class="link text-xs block mb-2">
-        ← Kembali ke Daftar Gunung
-    </a>
-    <h2 class="text-3xl font-black text-forest">Edit Data Gunung: {{ $mountain->name }}</h2>
-</div>
-
-<div class="card p-6 lg:p-8 max-w-4xl">
-    <form method="POST" action="{{ route('admin.mountains.update', $mountain) }}" class="space-y-6">
-        @csrf
-        @method('PUT')
-
-        <div class="grid gap-6 md:grid-cols-2">
-            <div>
-                <label for="name" class="field">
-                    <span>Nama Gunung *</span>
-                    <input type="text" id="name" name="name" value="{{ old('name', $mountain->name) }}" placeholder="Contoh: Gunung Ciremai" class="input" required />
-                </label>
-                @error('name')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="elevation" class="field">
-                    <span>Ketinggian (mdpl) *</span>
-                    <input type="number" id="elevation" name="elevation" value="{{ old('elevation', $mountain->elevation) }}" placeholder="Contoh: 3078" min="0" class="input" required />
-                </label>
-                @error('elevation')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="location" class="field">
-                    <span>Lokasi / Kabupaten *</span>
-                    <input type="text" id="location" name="location" value="{{ old('location', $mountain->location) }}" placeholder="Contoh: Kuningan / Majalengka" class="input" required />
-                </label>
-                @error('location')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="province" class="field">
-                    <span>Provinsi *</span>
-                    <input type="text" id="province" name="province" value="{{ old('province', $mountain->province) }}" placeholder="Contoh: Jawa Barat" class="input" required />
-                </label>
-                @error('province')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="difficulty" class="field">
-                    <span>Tingkat Kesulitan *</span>
-                    <select id="difficulty" name="difficulty" class="input" required>
-                        <option value="">-- Pilih Tingkat Kesulitan --</option>
-                        <option value="Easy" @selected(old('difficulty', $mountain->difficulty) === 'Easy')>Easy (Pemula)</option>
-                        <option value="Medium" @selected(old('difficulty', $mountain->difficulty) === 'Medium')>Medium (Menengah)</option>
-                        <option value="Hard" @selected(old('difficulty', $mountain->difficulty) === 'Hard')>Hard (Tingkat Lanjut / Sulit)</option>
-                    </select>
-                </label>
-                @error('difficulty')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="estimated_duration" class="field">
-                    <span>Estimasi Durasi Pendakian *</span>
-                    <input type="text" id="estimated_duration" name="estimated_duration" value="{{ old('estimated_duration', $mountain->estimated_duration) }}" placeholder="Contoh: 2 Hari 1 Malam" class="input" required />
-                </label>
-                @error('estimated_duration')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="latitude" class="field">
-                    <span>Latitude (Opsional)</span>
-                    <input type="text" id="latitude" name="latitude" value="{{ old('latitude', $mountain->latitude) }}" placeholder="Contoh: -6.892300" class="input" />
-                </label>
-                @error('latitude')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="longitude" class="field">
-                    <span>Longitude (Opsional)</span>
-                    <input type="text" id="longitude" name="longitude" value="{{ old('longitude', $mountain->longitude) }}" placeholder="Contoh: 108.407600" class="input" />
-                </label>
-                @error('longitude')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-        </div>
-
-        <div>
-            <label for="description" class="field">
-                <span>Deskripsi Gunung (Opsional)</span>
-                <textarea id="description" name="description" rows="4" placeholder="Jelaskan karakteristik trek..." class="input">{{ old('description', $mountain->description) }}</textarea>
-            </label>
-            @error('description')
-                <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="pt-4 border-t border-primary/10 flex items-center justify-end gap-3">
-            <a href="{{ route('admin.mountains.index') }}" class="btn-ghost">
-                Batal
-            </a>
-            <button type="submit" class="btn-secondary">
-                Perbarui Gunung
-            </button>
-        </div>
-    </form>
-</div>
-@endsection --}}
 @extends('layouts.admin')
 
 {{-- =========================================================
-LEAFLET CSS
+     LEAFLET CSS
 ========================================================= --}}
 @push('styles')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 @endpush
 
 @section('content')
@@ -136,9 +16,13 @@ LEAFLET CSS
      HEADER
 ====================================================== --}}
 <div class="mb-8">
-    <a href="{{ route('admin.mountains.index') }}" class="link mb-2 block text-xs">
+    <a
+        href="{{ route('admin.mountains.index') }}"
+        class="link mb-2 block text-xs"
+    >
         ← Kembali ke Daftar Gunung
     </a>
+
     <h2 class="text-3xl font-black text-forest">
         Edit Data Gunung: {{ $mountain->name }}
     </h2>
@@ -148,7 +32,13 @@ LEAFLET CSS
      FORM
 ====================================================== --}}
 <div class="card max-w-4xl p-6 lg:p-8">
-    <form method="POST" action="{{ route('admin.mountains.update', $mountain) }}" class="space-y-6">
+
+    <form
+        method="POST"
+        action="{{ route('admin.mountains.update', $mountain) }}"
+        enctype="multipart/form-data"
+        class="space-y-6"
+    >
         @csrf
         @method('PUT')
 
@@ -161,10 +51,22 @@ LEAFLET CSS
             <div>
                 <label for="name" class="field">
                     <span>Nama Gunung *</span>
-                    <input type="text" id="name" name="name" value="{{ old('name', $mountain->name) }}" placeholder="Contoh: Gunung Ciremai" class="input" required />
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="{{ old('name', $mountain->name) }}"
+                        placeholder="Contoh: Gunung Ciremai"
+                        class="input"
+                        required
+                    />
                 </label>
+
                 @error('name')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -172,10 +74,23 @@ LEAFLET CSS
             <div>
                 <label for="elevation" class="field">
                     <span>Ketinggian (mdpl) *</span>
-                    <input type="number" id="elevation" name="elevation" value="{{ old('elevation', $mountain->elevation) }}" placeholder="Contoh: 3078" min="0" class="input" required />
+
+                    <input
+                        type="number"
+                        id="elevation"
+                        name="elevation"
+                        value="{{ old('elevation', $mountain->elevation) }}"
+                        placeholder="Contoh: 3078"
+                        min="0"
+                        class="input"
+                        required
+                    />
                 </label>
+
                 @error('elevation')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -183,10 +98,22 @@ LEAFLET CSS
             <div>
                 <label for="location" class="field">
                     <span>Lokasi / Kabupaten *</span>
-                    <input type="text" id="location" name="location" value="{{ old('location', $mountain->location) }}" placeholder="Contoh: Kuningan / Majalengka" class="input" required />
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value="{{ old('location', $mountain->location) }}"
+                        placeholder="Contoh: Kuningan / Majalengka"
+                        class="input"
+                        required
+                    />
                 </label>
+
                 @error('location')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -194,10 +121,22 @@ LEAFLET CSS
             <div>
                 <label for="province" class="field">
                     <span>Provinsi *</span>
-                    <input type="text" id="province" name="province" value="{{ old('province', $mountain->province) }}" placeholder="Contoh: Jawa Barat" class="input" required />
+
+                    <input
+                        type="text"
+                        id="province"
+                        name="province"
+                        value="{{ old('province', $mountain->province) }}"
+                        placeholder="Contoh: Jawa Barat"
+                        class="input"
+                        required
+                    />
                 </label>
+
                 @error('province')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -205,15 +144,44 @@ LEAFLET CSS
             <div>
                 <label for="difficulty" class="field">
                     <span>Tingkat Kesulitan *</span>
-                    <select id="difficulty" name="difficulty" class="input" required>
-                        <option value="">-- Pilih Tingkat Kesulitan --</option>
-                        <option value="Easy" @selected(old('difficulty', $mountain->difficulty) === 'Easy')>Easy (Pemula)</option>
-                        <option value="Medium" @selected(old('difficulty', $mountain->difficulty) === 'Medium')>Medium (Menengah)</option>
-                        <option value="Hard" @selected(old('difficulty', $mountain->difficulty) === 'Hard')>Hard (Tingkat Lanjut / Sulit)</option>
+
+                    <select
+                        id="difficulty"
+                        name="difficulty"
+                        class="input"
+                        required
+                    >
+                        <option value="">
+                            -- Pilih Tingkat Kesulitan --
+                        </option>
+
+                        <option
+                            value="Easy"
+                            @selected(old('difficulty', $mountain->difficulty) === 'Easy')
+                        >
+                            Easy (Pemula)
+                        </option>
+
+                        <option
+                            value="Medium"
+                            @selected(old('difficulty', $mountain->difficulty) === 'Medium')
+                        >
+                            Medium (Menengah)
+                        </option>
+
+                        <option
+                            value="Hard"
+                            @selected(old('difficulty', $mountain->difficulty) === 'Hard')
+                        >
+                            Hard (Tingkat Lanjut / Sulit)
+                        </option>
                     </select>
                 </label>
+
                 @error('difficulty')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -221,10 +189,22 @@ LEAFLET CSS
             <div>
                 <label for="estimated_duration" class="field">
                     <span>Estimasi Durasi Pendakian *</span>
-                    <input type="text" id="estimated_duration" name="estimated_duration" value="{{ old('estimated_duration', $mountain->estimated_duration) }}" placeholder="Contoh: 2 Hari 1 Malam" class="input" required />
+
+                    <input
+                        type="text"
+                        id="estimated_duration"
+                        name="estimated_duration"
+                        value="{{ old('estimated_duration', $mountain->estimated_duration) }}"
+                        placeholder="Contoh: 2 Hari 1 Malam"
+                        class="input"
+                        required
+                    />
                 </label>
+
                 @error('estimated_duration')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -232,10 +212,21 @@ LEAFLET CSS
             <div>
                 <label for="latitude" class="field">
                     <span>Latitude (Opsional)</span>
-                    <input type="text" id="latitude" name="latitude" value="{{ old('latitude', $mountain->latitude) }}" placeholder="Klik peta untuk memilih" class="input" />
+
+                    <input
+                        type="text"
+                        id="latitude"
+                        name="latitude"
+                        value="{{ old('latitude', $mountain->latitude) }}"
+                        placeholder="Klik peta untuk memilih"
+                        class="input"
+                    />
                 </label>
+
                 @error('latitude')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -243,10 +234,21 @@ LEAFLET CSS
             <div>
                 <label for="longitude" class="field">
                     <span>Longitude (Opsional)</span>
-                    <input type="text" id="longitude" name="longitude" value="{{ old('longitude', $mountain->longitude) }}" placeholder="Klik peta untuk memilih" class="input" />
+
+                    <input
+                        type="text"
+                        id="longitude"
+                        name="longitude"
+                        value="{{ old('longitude', $mountain->longitude) }}"
+                        placeholder="Klik peta untuk memilih"
+                        class="input"
+                    />
                 </label>
+
                 @error('longitude')
-                    <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
                 @enderror
             </div>
 
@@ -255,30 +257,36 @@ LEAFLET CSS
         {{-- =================================================
              PETA & PENCARIAN LOKASI
         ================================================== --}}
-        <div class="pt-4 border-t border-primary/10">
+        <div class="border-t border-primary/10 pt-4">
+
             <div class="mb-3">
                 <h3 class="text-lg font-black text-forest">
                     Pilih Lokasi Gunung
                 </h3>
+
                 <p class="mt-1 text-xs text-primary/60">
+                    Klik pada peta untuk menentukan koordinat gunung.
                 </p>
             </div>
 
             {{-- INPUT PENCARIAN LOKASI --}}
             <div class="mb-4 flex gap-2">
-                <input 
-                    type="text" 
-                    id="map-search-input" 
-                    placeholder="Cari lokasi (contoh: Gunung Ciremai)..." 
+
+                <input
+                    type="text"
+                    id="map-search-input"
+                    placeholder="Cari lokasi (contoh: Gunung Ciremai)..."
                     class="input flex-1"
                 />
-                <button 
-                    type="button" 
-                    id="map-search-btn" 
-                    class="btn-primary px-5 py-2.5 text-sm shrink-0"
+
+                <button
+                    type="button"
+                    id="map-search-btn"
+                    class="btn-primary shrink-0 px-5 py-2.5 text-sm"
                 >
                     Cari
                 </button>
+
             </div>
 
             {{-- MAP --}}
@@ -294,42 +302,113 @@ LEAFLET CSS
                     z-index: 1;
                 "
             ></div>
+
+        </div>
+
+        {{-- =================================================
+             UPLOAD GAMBAR
+        ================================================== --}}
+        <div>
+
+            <label for="image" class="field">
+
+                <span>Gambar Gunung (Opsional)</span>
+
+                {{-- Preview gambar saat ini --}}
+                @if($mountain->image)
+                    <div class="mb-3">
+                        <img
+                            src="{{ asset('storage/' . $mountain->image) }}"
+                            alt="{{ $mountain->name }}"
+                            class="h-48 w-full max-w-md rounded-xl object-cover"
+                        >
+                    </div>
+                @endif
+
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpg,.jpeg,.png,.webp"
+                    class="input"
+                />
+
+                <p class="mt-1 text-xs text-primary/60">
+                    Pilih gambar baru jika ingin mengganti gambar saat ini.
+                    Format yang diizinkan: jpg, jpeg, png, webp.
+                    Ukuran maksimal: 2MB.
+                </p>
+
+            </label>
+
+            @error('image')
+                <p class="mt-1 text-xs font-bold text-red-600">
+                    {{ $message }}
+                </p>
+            @enderror
+
         </div>
 
         {{-- =================================================
              DESKRIPSI
         ================================================== --}}
         <div>
+
             <label for="description" class="field">
+
                 <span>Deskripsi Gunung (Opsional)</span>
-                <textarea id="description" name="description" rows="4" placeholder="Jelaskan karakteristik trek..." class="input">{{ old('description', $mountain->description) }}</textarea>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="4"
+                    placeholder="Jelaskan karakteristik trek..."
+                    class="input"
+                >{{ old('description', $mountain->description) }}</textarea>
+
             </label>
+
             @error('description')
-                <p class="mt-1 text-xs font-bold text-red-600">{{ $message }}</p>
+                <p class="mt-1 text-xs font-bold text-red-600">
+                    {{ $message }}
+                </p>
             @enderror
+
         </div>
 
         {{-- =================================================
              BUTTON
         ================================================== --}}
         <div class="flex items-center justify-end gap-3 border-t border-primary/10 pt-4">
-            <a href="{{ route('admin.mountains.index') }}" class="btn-ghost">
+
+            <a
+                href="{{ route('admin.mountains.index') }}"
+                class="btn-ghost"
+            >
                 Batal
             </a>
-            <button type="submit" class="btn-secondary">
+
+            <button
+                type="submit"
+                class="btn-secondary"
+            >
                 Perbarui Gunung
             </button>
+
         </div>
 
     </form>
+
 </div>
 
 @endsection
 
+
 {{-- =========================================================
-LEAFLET JAVASCRIPT & SEARCH NOMINATIM
+     LEAFLET JAVASCRIPT & SEARCH NOMINATIM
 ========================================================= --}}
 @push('scripts')
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
@@ -349,17 +428,27 @@ LEAFLET JAVASCRIPT & SEARCH NOMINATIM
         const defaultLatitude = -6.914744;
         const defaultLongitude = 107.609810;
 
-        // Cek apakah sudah ada koordinat dari database / old input
+        // Cek koordinat dari database / old input
         const initialLat = parseFloat(latitudeInput.value);
         const initialLng = parseFloat(longitudeInput.value);
 
-        const hasValidCoords = !isNaN(initialLat) && !isNaN(initialLng);
+        const hasValidCoords =
+            !isNaN(initialLat) &&
+            !isNaN(initialLng);
 
-        const mapCenter = hasValidCoords ? [initialLat, initialLng] : [defaultLatitude, defaultLongitude];
-        const mapZoom = hasValidCoords ? 13 : 10;
+        const mapCenter = hasValidCoords
+            ? [initialLat, initialLng]
+            : [defaultLatitude, defaultLongitude];
+
+        const mapZoom = hasValidCoords
+            ? 13
+            : 10;
 
         // Membuat peta
-        const map = L.map('mountain-map').setView(mapCenter, mapZoom);
+        const map = L.map('mountain-map').setView(
+            mapCenter,
+            mapZoom
+        );
 
         // Tile OpenStreetMap
         L.tileLayer(
@@ -371,8 +460,13 @@ LEAFLET JAVASCRIPT & SEARCH NOMINATIM
 
         let marker = null;
 
-        // Fungsi untuk memperbarui posisi marker & input
-        function updateMarker(lat, lng, popupText = null) {
+        // Fungsi memperbarui marker dan input koordinat
+        function updateMarker(
+            lat,
+            lng,
+            popupText = null
+        ) {
+
             latitudeInput.value = lat.toFixed(6);
             longitudeInput.value = lng.toFixed(6);
 
@@ -380,64 +474,131 @@ LEAFLET JAVASCRIPT & SEARCH NOMINATIM
                 map.removeLayer(marker);
             }
 
-            marker = L.marker([lat, lng]).addTo(map);
+            marker = L.marker([lat, lng])
+                .addTo(map);
 
             if (popupText) {
-                marker.bindPopup(popupText).openPopup();
+
+                marker
+                    .bindPopup(popupText)
+                    .openPopup();
+
             } else {
-                marker.bindPopup(`
-                    <strong>Lokasi Gunung</strong><br>
-                    Latitude: ${lat.toFixed(6)}<br>
-                    Longitude: ${lng.toFixed(6)}
-                `).openPopup();
+
+                marker
+                    .bindPopup(`
+                        <strong>Lokasi Gunung</strong><br>
+                        Latitude: ${lat.toFixed(6)}<br>
+                        Longitude: ${lng.toFixed(6)}
+                    `)
+                    .openPopup();
+
             }
         }
 
         // Jika sudah ada koordinat awal, pasang marker
         if (hasValidCoords) {
-            updateMarker(initialLat, initialLng, `<strong>{{ $mountain->name }}</strong>`);
+
+            updateMarker(
+                initialLat,
+                initialLng,
+                `<strong>{{ $mountain->name }}</strong>`
+            );
+
         }
 
         // Klik pada peta
         map.on('click', function (e) {
-            updateMarker(e.latlng.lat, e.latlng.lng);
+
+            updateMarker(
+                e.latlng.lat,
+                e.latlng.lng
+            );
+
         });
 
-        // Fitur Pencarian menggunakan Nominatim API
-        function performSearch() {
-            const query = searchInput.value.trim();
-            if (!query) return;
+        // =================================================
+        // PENCARIAN LOKASI NOMINATIM
+        // =================================================
 
-            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
+        function performSearch() {
+
+            const query = searchInput.value.trim();
+
+            if (!query) {
+                return;
+            }
+
+            const url =
+                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
 
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
+
                     if (data && data.length > 0) {
+
                         const lat = parseFloat(data[0].lat);
                         const lon = parseFloat(data[0].lon);
-                        
-                        map.setView([lat, lon], 13);
-                        updateMarker(lat, lon, `<strong>${data[0].display_name}</strong>`);
+
+                        map.setView(
+                            [lat, lon],
+                            13
+                        );
+
+                        updateMarker(
+                            lat,
+                            lon,
+                            `<strong>${data[0].display_name}</strong>`
+                        );
+
                     } else {
-                        alert('Lokasi tidak ditemukan. Coba kata kunci lain.');
+
+                        alert(
+                            'Lokasi tidak ditemukan. Coba kata kunci lain.'
+                        );
+
                     }
+
                 })
                 .catch(error => {
-                    console.error('Error searching location:', error);
-                    alert('Terjadi kesalahan saat mencari lokasi.');
+
+                    console.error(
+                        'Error searching location:',
+                        error
+                    );
+
+                    alert(
+                        'Terjadi kesalahan saat mencari lokasi.'
+                    );
+
                 });
+
         }
 
-        searchBtn.addEventListener('click', performSearch);
-        
-        searchInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                performSearch();
+        // Tombol Cari
+        searchBtn.addEventListener(
+            'click',
+            performSearch
+        );
+
+        // Enter pada search
+        searchInput.addEventListener(
+            'keypress',
+            function (e) {
+
+                if (e.key === 'Enter') {
+
+                    e.preventDefault();
+
+                    performSearch();
+
+                }
+
             }
-        });
+        );
 
     });
 </script>
+
 @endpush

@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="mb-7">
+
     <a
         class="link text-sm"
         href="{{ route('admin.' . $resource . '.index') }}"
@@ -10,9 +11,9 @@
         ← Back to list
     </a>
 
-<h2 class="mt-2 text-3xl font-black">
-    {{ $title }}
-</h2>
+    <h2 class="mt-2 text-3xl font-black">
+        {{ $title }}
+    </h2>
 
 </div>
 
@@ -25,124 +26,113 @@
 >
     @csrf
 
-@if($item->exists)
-    @method('PUT')
-@endif
+    @if($item->exists)
+        @method('PUT')
+    @endif
 
-@if($resource === 'mountains')
+    @if($resource === 'mountains')
 
-    <div class="grid gap-5 sm:grid-cols-2">
+        <div class="grid gap-5 sm:grid-cols-2">
+
+            <label class="field">
+                <span>Name</span>
+                <input
+                    name="name"
+                    value="{{ old('name', $item->name) }}"
+                    required
+                >
+            </label>
+
+            <label class="field">
+                <span>Location</span>
+                <input
+                    name="location"
+                    value="{{ old('location', $item->location) }}"
+                    required
+                >
+            </label>
+
+            <label class="field">
+                <span>Province</span>
+                <input
+                    name="province"
+                    value="{{ old('province', $item->province) }}"
+                    required
+                >
+            </label>
+
+            <label class="field">
+                <span>Elevation (m)</span>
+                <input
+                    name="elevation"
+                    type="number"
+                    value="{{ old('elevation', $item->elevation) }}"
+                    required
+                >
+            </label>
+
+            <label class="field">
+                <span>Difficulty</span>
+
+                <select name="difficulty">
+                    @foreach(['Easy', 'Medium', 'Hard'] as $d)
+                        <option
+                            value="{{ $d }}"
+                            @selected(old('difficulty', $item->difficulty) === $d)
+                        >
+                            {{ $d }}
+                        </option>
+                    @endforeach
+                </select>
+            </label>
+
+            <label class="field">
+                <span>Estimated duration</span>
+
+                <input
+                    name="estimated_duration"
+                    value="{{ old('estimated_duration', $item->estimated_duration) }}"
+                    required
+                >
+            </label>
+
+            <label class="field">
+                <span>Latitude</span>
+
+                <input
+                    name="latitude"
+                    type="number"
+                    step="any"
+                    value="{{ old('latitude', $item->latitude) }}"
+                >
+            </label>
+
+            <label class="field">
+                <span>Longitude</span>
+
+                <input
+                    name="longitude"
+                    type="number"
+                    step="any"
+                    value="{{ old('longitude', $item->longitude) }}"
+                >
+            </label>
+
+        </div>
 
         <label class="field">
-            <span>Name</span>
-            <input
-                name="name"
-                value="{{ old('name', $item->name) }}"
-                required
-            >
+            <span>Description</span>
+
+            <textarea
+                name="description"
+                rows="4"
+            >{{ old('description', $item->description) }}</textarea>
         </label>
 
-        <label class="field">
-            <span>Location</span>
-            <input
-                name="location"
-                value="{{ old('location', $item->location) }}"
-                required
-            >
-        </label>
+    @elseif($resource === 'gear-categories')
 
         <label class="field">
-            <span>Province</span>
-            <input
-                name="province"
-                value="{{ old('province', $item->province) }}"
-                required
-            >
-        </label>
-
-        <label class="field">
-            <span>Elevation (m)</span>
-            <input
-                name="elevation"
-                type="number"
-                value="{{ old('elevation', $item->elevation) }}"
-                required
-            >
-        </label>
-
-        <label class="field">
-            <span>Difficulty</span>
-
-            <select name="difficulty">
-                @foreach(['Easy', 'Medium', 'Hard'] as $d)
-                    <option
-                        value="{{ $d }}"
-                        @selected(old('difficulty', $item->difficulty) === $d)
-                    >
-                        {{ $d }}
-                    </option>
-                @endforeach
-            </select>
-        </label>
-
-        <label class="field">
-            <span>Estimated duration</span>
-            <input
-                name="estimated_duration"
-                value="{{ old('estimated_duration', $item->estimated_duration) }}"
-                required
-            >
-        </label>
-
-        <label class="field">
-            <span>Latitude</span>
-            <input
-                name="latitude"
-                type="number"
-                step="any"
-                value="{{ old('latitude', $item->latitude) }}"
-            >
-        </label>
-
-        <label class="field">
-            <span>Longitude</span>
-            <input
-                name="longitude"
-                type="number"
-                step="any"
-                value="{{ old('longitude', $item->longitude) }}"
-            >
-        </label>
-
-    </div>
-
-    <label class="field">
-        <span>Description</span>
-
-        <textarea
-            name="description"
-            rows="4"
-        >{{ old('description', $item->description) }}</textarea>
-    </label>
-
-@elseif($resource === 'gear-categories')
-
-    <label class="field">
-        <span>Category name</span>
-
-        <input
-            name="name"
-            value="{{ old('name', $item->name) }}"
-            required
-        >
-    </label>
-
-@elseif($resource === 'gear')
-
-    <div class="grid gap-5 sm:grid-cols-2">
-
-        <label class="field">
-            <span>Name</span>
+            <span>Category name</span>
 
             <input
                 name="name"
@@ -151,103 +141,157 @@
             >
         </label>
 
-        <label class="field">
-            <span>Category</span>
+    @elseif($resource === 'gear')
 
-            <select name="category_id">
-                @foreach($categories as $category)
-                    <option
-                        value="{{ $category->id }}"
-                        @selected(old('category_id', $item->category_id) == $category->id)
-                    >
-                        {{ $category->name }}
-                    </option>
-                @endforeach
-            </select>
-        </label>
+        <div class="grid gap-5 sm:grid-cols-2">
 
-        <label class="field">
-            <span>Available stock</span>
+            <label class="field">
+                <span>Name</span>
 
-            <input
-                name="stock"
-                type="number"
-                min="0"
-                value="{{ old('stock', $item->stock ?? 0) }}"
-                required
-            >
-        </label>
+                <input
+                    name="name"
+                    value="{{ old('name', $item->name) }}"
+                    required
+                >
+            </label>
 
-        <label class="field">
-            <span>Daily rate (Rp)</span>
+            <label class="field">
+                <span>Category</span>
 
-            <input
-                name="rental_price"
-                type="number"
-                min="0"
-                value="{{ old('rental_price', $item->rental_price) }}"
-                required
-            >
-        </label>
+                <select name="category_id">
+                    @foreach($categories as $category)
+                        <option
+                            value="{{ $category->id }}"
+                            @selected(old('category_id', $item->category_id) == $category->id)
+                        >
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </label>
 
-    </div>
+            <label class="field">
+                <span>Available stock</span>
 
-    <label class="field">
-        <span>Description</span>
+                <input
+                    name="stock"
+                    type="number"
+                    min="0"
+                    value="{{ old('stock', $item->stock ?? 0) }}"
+                    required
+                >
+            </label>
 
-        <textarea
-            name="description"
-            rows="4"
-        >{{ old('description', $item->description) }}</textarea>
-    </label>
+            <label class="field">
+                <span>Daily rate (Rp)</span>
 
-@elseif($resource === 'recommendations')
+                <input
+                    name="rental_price"
+                    type="number"
+                    min="0"
+                    value="{{ old('rental_price', $item->rental_price) }}"
+                    required
+                >
+            </label>
 
-    <div class="grid gap-5 sm:grid-cols-2">
-
-        <label class="field">
-            <span>Mountain</span>
-
-            <select name="mountain_id">
-                @foreach($mountains as $mountain)
-                    <option
-                        value="{{ $mountain->id }}"
-                        @selected(old('mountain_id', $item->mountain_id) == $mountain->id)
-                    >
-                        {{ $mountain->name }}
-                    </option>
-                @endforeach
-            </select>
-        </label>
+        </div>
 
         <label class="field">
-            <span>Gear</span>
+            <span>Description</span>
 
-            <select name="gear_id">
-                @foreach($gear as $gearItem)
-                    <option
-                        value="{{ $gearItem->id }}"
-                        @selected(old('gear_id', $item->gear_id) == $gearItem->id)
-                    >
-                        {{ $gearItem->name }}
-                    </option>
-                @endforeach
-            </select>
+            <textarea
+                name="description"
+                rows="4"
+            >{{ old('description', $item->description) }}</textarea>
         </label>
 
-    </div>
+    @elseif($resource === 'recommendations')
 
-@endif
+        <div class="space-y-6">
 
-@if($errors->any())
-    <div class="rounded-lg bg-red-50 p-3 text-sm text-red-700">
-        {{ $errors->first() }}
-    </div>
-@endif
+            <label class="field">
+                <span>Mountain</span>
 
-<button class="btn-primary">
-    Save changes
-</button>
+                <select name="mountain_id" required>
+                    @foreach($mountains as $mountain)
+                        <option
+                            value="{{ $mountain->id }}"
+                            @selected(
+                                old('mountain_id', $item->mountain_id)
+                                == $mountain->id
+                            )
+                        >
+                            {{ $mountain->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </label>
+
+            <div>
+
+                <span class="mb-3 block text-sm font-bold">
+                    Recommended Gear
+                </span>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+
+                    @foreach($gear as $gearItem)
+
+                        <label
+                            class="flex cursor-pointer items-center gap-3 rounded-lg border border-primary/10 p-3"
+                        >
+
+                            <input
+                                type="checkbox"
+                                name="gear_ids[]"
+                                value="{{ $gearItem->id }}"
+                                @checked(
+                                    in_array(
+                                        $gearItem->id,
+                                        old('gear_ids', $selectedGearIds ?? [])
+                                    )
+                                )
+                            >
+
+                            <span>
+                                {{ $gearItem->name }}
+                            </span>
+
+                        </label>
+
+                    @endforeach
+
+                </div>
+
+                @error('gear_ids')
+                    <p class="mt-2 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+                @error('gear_ids.*')
+                    <p class="mt-2 text-xs font-bold text-red-600">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+        </div>
+
+    @endif
+
+    @if($errors->any())
+
+        <div class="rounded-lg bg-red-50 p-3 text-sm text-red-700">
+            {{ $errors->first() }}
+        </div>
+
+    @endif
+
+    <button class="btn-primary">
+        Save changes
+    </button>
 
 </form>
 

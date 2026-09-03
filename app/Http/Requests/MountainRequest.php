@@ -21,6 +21,7 @@ class MountainRequest extends FormRequest
             'difficulty'         => 'required|in:Easy,Medium,Hard',
             'estimated_duration' => 'required|string|max:50',
             'description'        => 'nullable|string',
+            'image'              => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'latitude'           => 'nullable|numeric|between:-90,90',
             'longitude'          => 'nullable|numeric|between:-180,180',
         ];
@@ -39,6 +40,9 @@ class MountainRequest extends FormRequest
             'estimated_duration.required' => 'Estimasi durasi pendakian wajib diisi.',
             'latitude.between'            => 'Nilai latitude harus di antara -90 dan 90.',
             'longitude.between'           => 'Nilai longitude harus di antara -180 dan 180.',
+            'image.image'                 => 'File yang diunggah harus berupa gambar.',
+            'image.mimes'                 => 'Format gambar yang diizinkan: jpg, jpeg, png, webp.',
+            'image.max'                   => 'Ukuran gambar tidak boleh lebih dari 2MB.',
         ];
     }
 }
